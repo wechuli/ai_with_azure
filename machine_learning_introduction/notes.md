@@ -54,3 +54,25 @@ It is important to know that in machine learning, we ultimately always work with
 > A vector is simply an array of numbers, such as `(1,2,3)` - or a nested array that contains other arrays of numbers such as `(1,2,(1,2,3))`
 
 Vectors are used heavily in machine learning.
+
+## Scaling Data
+
+Scaling data means transforming it so that the values fit within some range or scale, such as 0-100 or 0-1. There are a number of reasons why it is a good idea to scale your data before feeding it into a machine learning algorithm.
+
+Two common approaches to scaling data includes **standardization** and **normalization**
+
+### Standardization
+
+> **Standardization** rescales data so that it has a mean of 0 and a standard deviation of 1.
+
+The formula for this is
+
+> (𝑥 − 𝜇)/𝜎
+
+### Normalization
+
+> Normalization rescales the data into the range [0,1]
+
+The formula for this is 
+
+> (𝑥 −𝑥𝑚𝑖𝑛)/(𝑥𝑚𝑎𝑥 −𝑥𝑚𝑖𝑛)
