@@ -1,0 +1,13 @@
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\bin\Debug\netcoreapp3.1\stats.exe
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\bin\Debug\netcoreapp3.1\stats.deps.json
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\bin\Debug\netcoreapp3.1\stats.runtimeconfig.json
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\bin\Debug\netcoreapp3.1\stats.runtimeconfig.dev.json
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\bin\Debug\netcoreapp3.1\stats.dll
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\bin\Debug\netcoreapp3.1\stats.pdb
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\obj\Debug\netcoreapp3.1\stats.csprojAssemblyReference.cache
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\obj\Debug\netcoreapp3.1\stats.AssemblyInfoInputs.cache
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\obj\Debug\netcoreapp3.1\stats.AssemblyInfo.cs
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\obj\Debug\netcoreapp3.1\stats.csproj.CoreCompileInputs.cache
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\obj\Debug\netcoreapp3.1\stats.dll
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\obj\Debug\netcoreapp3.1\stats.pdb
+C:\Users\Wechuli\Documents\repos\ai_with_azure\machine_learning_introduction\stats\obj\Debug\netcoreapp3.1\stats.genruntimeconfig.cache

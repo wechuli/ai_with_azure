@@ -6,11 +6,10 @@ from typing import List, Callable
 data_set = [-5, 10, 15]
 
 
-
-
 def calculate_standard_deviation(dataset: List[float]) -> float:
     sum_of_squares = 0
     mean = calculate_mean(dataset)
+    print(mean)
     for number in data_set:
         sum_of_squares += ((mean-number)**2)
 
