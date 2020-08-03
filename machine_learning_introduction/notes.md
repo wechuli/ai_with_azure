@@ -182,3 +182,195 @@ Machine learning cloud services also need to provide support for managing the re
 - **Algorithms** are the processes of learning
 
 Machine learning models are outputs or specific representations of algorithms that run on data. A model represents what is learned by a machine learning algorithm on the data.
+
+## The Linear Regression Algorithm
+
+Linear regression is an algorithm that uses a straight line (or plane) to describe relationships between variables.
+
+### Preparing the data
+
+- Linear assumption
+- Remove noise
+- Remove collinearity - When two variables are collinear, this means they can be modeled by the same line or are at least highly correlated. Having highly correlated input variables will make the model less consistent, so it's important to perform a correlation check among input variables and remove highly correlated input variables.
+- Gaussian distributions
+- Rescale inputs
+
+### Multiple Linear Regression
+
+In more complex cases where there is more than one input variable, we might see something like this:
+
+![](assets/mulreg.PNG)
+
+When we have multiple input variables like this, we call it multiple linear regression. The visualization of multiple linear regression is no longer a simple line but instead a plane in multiple dimensions.
+
+To "train a linear regression model" simply means to learn the coefficients and bias that best fits the data.
+
+The process of finding the best model is essentially a process of finding the coefficients and bias that minimize this error. To calculate this error, we use a cost function. There are many cost functions you can choose from to train a model and resulting error will be different depending on which cost function you choose. The most commonly used cost function for linear regression is the **root mean squared error (RMSE)**
+
+### Azure Machine Learning designer(preview)
+
+Gives you a cloud-based interactive visual workspace that you can use to easily and quickly prep data, train and deploy machine learning models. It supports Azure Machine Learning compute, GPU or CPU. Machine Learning designer also supports publishing models as web services on Azure Kubernetes Service that can easily be consumed by other applications.
+
+## Learning a Function
+
+We can generally think of a machine learning algorithm as a process for learning and models as specific representations that we train using data. In essence, machine learning algorithms aim to learn a target function(f) that describes the mapping between data input variables and an output variable (Y).
+
+The core goal is to lean a useful transformation of the input data that gets us closer to the expected output.
+
+Since the process extrapolates from a limited set of values, there will always be an error _e_ which is independent of the input data (X) such that
+
+```
+Y = f(X) + e
+```
+
+The variable `e` is called irreducible error because no matter how good we get at estimating the target function(f), we cannot reduce this error.
+
+Note that the irreducible error is different from the model error. Irreducible error is caused by the data collection process - such as when we don't have enough data or don't have enough data features. In contrast, the model error measures how much the prediction made by the model is different from the true output. The model error is generated from the model and can be reduced during the model learning process.
+
+## Parametric vs Non-parametric
+
+Based on the assumptions about the shape and structure of the function they try to learn, machine learning algorithms can be divided into two categories: parametric and nonparametric.
+
+### Parametric Machine Learning Algorithms
+
+Parametric machine learning algorithms make assumptions about the mapping function and have a fixed number of parameters. No matter how much data is used to learn the model, this will not change how many parameters the algorithm has. With a parametric algorithm, we are selecting the form of the function and then learning its coefficients using the training data.
+
+An example of this would be the approach used in linear regression algorithms, where the simplified functional form can be something like:
+
+> B*0 + B_1 * X*1 + B_2 * X_2 = 0
+
+This assumption greatly simplifies the learning process; after selecting the initial function, the remaining problem is simply to estimate the coefficients B0, B1, and B2 using different samples of input variables X1 and X2.
+
+**Benefits**:
+
+- Simpler and easier to understand; easier to interpret the results
+- Faster when talking about learning from data
+- Less training data required to learn the mapping function, working well even if the fit to data is not perfect
+
+**Limitations**:
+
+- Highly constrained to the specified form of the simplified function
+- Limited complexity of the problems they are suitable for
+- Poor fit in practice, unlikely to match the underlying mapping function.
+
+### Non-parametric Machine Learning Algorithms
+
+Non-parametric algorithms do not make assumptions regarding the form of the mapping function between input data and output. Consequently, they are free to learn any functional form from the training data.
+
+**Benefits**:
+
+- High flexibility, in the sense that they are capable of fitting a large number of functional forms
+- Power by making weak or no assumptions on the underlying function
+- High performance in the prediction models that are produced
+
+**Limitations**:
+
+- More training data is required to estimate the mapping function
+- Slower to train, generally having far more parameters to train
+- Overfitting the training data is a risk; overfitting makes it harder to explain the resulting predictions
+
+## Classical ML vs. Deep Learning
+
+Deep learning algorithms are based on neural networks and the classical ML algorithms are based on classical mathematical algorithms, such as linear regression, logistic regression, decision tree, SVM and so on.
+
+**Deep Learning advantages**
+
+- Suitable for high complexity problems
+- Better accuracy, compared to classical ML
+- Better support for big data
+- Complex features can be learned
+
+**Deep Learning disadvantages**
+
+- Difficult to explain trained data
+- Require significant computational power
+
+**Classical ML advantages**
+
+- More suitable for small data
+- Easier to interpret outcomes
+- Cheaper to perform
+- Can run on low-end machines
+- Does not require large computational power
+
+**Classical ML disadvantages**
+
+- Difficult to learn large datasets
+- Require feature engineering
+- Difficult to learn complex functions
+
+## Approaches to Machine Learning
+
+There are three main approaches to machine learning:
+
+Supervised learning
+Unsupervised learning
+Reinforcement learning
+
+### Supervised learning
+
+Learns from data that contains both the inputs and expected outputs (e.g., labeled data). Common types are:
+
+- **Classification**: Outputs are categorical.
+- **Regression**: Outputs are continuous and numerical.
+- **Similarity learning**: Learns from examples using a similarity function that measures how similar two objects are.
+- **Feature learning**: Learns to automatically discover the representations or features from raw data.
+- **Anomaly detection**: A special form of classification, which learns from data labeled as normal/abnormal.
+
+### Unsupervised learning
+
+Learns from input data only; finds hidden structure in input data.
+
+- **Clustering**: Assigns entities to clusters or groups.
+- **Feature learning**: Features are learned from unlabeled data.
+- **Anomaly detection**: Learns from unlabeled data, using the assumption that the majority of entities are normal.
+
+### Reinforcement learning
+
+Learns how an agent should take action in an environment in order to maximize a reward function.
+
+- **Markov decision process**: A mathematical process to model decision-making in situations where outcomes are partly random and partly under the control of a decision-maker. Does not assume knowledge of an exact mathematical model.
+  The main difference between reinforcement learning and other machine learning approaches is that reinforcement learning is an active process where the actions of the agent influence the data observed in the future, hence influencing its own potential future states. In contrast, supervised and unsupervised learning approaches are passive processes where learning is performed without any actions that could influence the data.
+
+## The Trade-Offs
+
+Machine learning involves certain trade-offs. Two of the most important are **bias vs variance** and **overfitting vs. underfitting**.
+
+### Bias Vs. Variance
+
+**Bias** measures how inaccurate the model prediction is in comparison with the true output. It is due to erroneous assumptions made in the machine learning process to simplify the model and make the target function easier to learn. High model complexity tends to have a low bias.
+
+**Variance** measures how much the target function will change if different training data is used. Variance can be caused by modeling the random noise in the training data. High model complexity tends to have a high variance.
+
+As a general trend, parametric and linear algorithms often have high bias and low variance, whereas non-parametric and non-linear algorithms often have low bias and high variance
+
+### Overfitting vs. Underfitting
+
+Overfitting refers to the situation in which models fit the training data very well, but fail to generalize to new data.
+
+Underfitting refers to the situation in which models neither fit the training data nor generalize to new data.
+
+### Bias vs. Variance Trade-off
+
+The prediction error can be viewed as the sum of model error (error coming from the model) and the irreducible error (coming from data collection).
+
+```
+prediction error = Bias error + variance + error + irreducible error
+```
+
+Low bias means fewer assumptions about the target function. Some examples of algorithms with low bias are KNN and decision trees. Having fewer assumptions can help generalize relevant relations between features and target outputs. In contrast, high bias means more assumptions about the target function. Linear regression would be a good example (e.g., it assumes a linear relationship). Having more assumptions can potentially miss important relations between features and outputs and cause underfitting.
+
+Low variance indicates changes in training data would result in similar target functions. For example, linear regression usually has a low variance. High variance indicates changes in training data would result in very different target functions. For example, support vector machines usually have a high variance. High variance suggests that the algorithm learns the random noise instead of the output and causes overfitting.
+
+Generally, increasing model complexity would decrease bias error since the model has more capacity to learn from the training data. But the variance error would increase if the model complexity increases, as the model may begin to learn from noise in the training data.
+
+The goal of training machine learning models is to achieve low bias and low variance. The optimal model complexity is where bias error crosses with variance error.
+
+### Overfitting vs. Underfitting
+
+- k-fold cross-validation: it split the initial training data into k subsets and train the model k times. In each training, it uses one subset as the testing data and the rest as training data.
+- hold back a validation dataset from the initial training data to estimatete how well the model generalizes on new data.
+- simplify the model. For example, using fewer layers or less neurons to make the neural network smaller.
+- use more data.
+- reduce dimensionality in training data such as PCA: it projects training data into a smaller dimension to decrease the model complexity.
+- Stop the training early when the performance on the testing dataset has not improved after a number of training iterations.
