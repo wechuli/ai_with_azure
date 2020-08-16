@@ -378,13 +378,10 @@ The goal of training machine learning models is to achieve low bias and low vari
 # Model Training
 
 Before training a model, we first need to handle data preparation, specifically
+
 - Data importing and transformation
-- The data management process, including:
-    - The use of datastores and datasets
-    - versioning
-    - feature engineering
-    - How to monitor for data drift
-Model training
+- The data management process, including: - The use of datastores and datasets - versioning - feature engineering - How to monitor for data drift
+  Model training
 - The core model training process
 - Two of the fundamental machine learning models: Classifier and regressor
 - The model evaluation process and relevant metrics
@@ -394,8 +391,88 @@ ensemble learning and automated machine learning.
 ## Data wrangling
 
 Data wrangling is the process of cleaning and transforming data to make it more appropriate for data analysis. The process generally follows these main steps:
+
 - Explore the raw data and check the general quality of the dataset.
 - Transform the raw data, by restructuring, normalizing, and cleaning the data. For example, this could involve handling missing values and detecting errors.
 - Validate and publish the data
 
 Data wrangling is an iterative process where you do some data transformation then check the results and come back to the process to make improvements.
+
+## Managing Data
+
+Azure Machine Learning has two data management tools that we need to consider: Datastores and datasets.
+
+- **Datastores** offers a layer of abstraction over the supported Azure storage services. They store all the information needed to connect to a particular storage service. Datastores provide an access mechanism that is independent of the computer resource that is used to drive a machine learning process.
+- **Datasets** are resources for exploring, transforming, and managing data in Azure ML. A dataset is essentially a reference that points to the data in storage. It is used to get specific data files in the datastores.
+
+### The Data Access Workflow
+
+The steps of the data access workflow are:
+
+1.  **Create a datastore** so that you can access storage services in Azure
+2.  **Create a dataset**, which you will subsequently use for model training in your machine learning experiment.
+3.  **Create a dataset monitor** to detect issues in the data, such as data drift
+
+Over time, the input data that you are feeding into your model is likely to change- and this is what is meant by data drift. You can set up dataset monitors to detect data drift and other issues in your data. When data drift is detected, you can have the system automatically update the input dataset so that you can retain the model and maintain its accuracy.
+
+### Key points about datasets
+
+- They are used to interact with your data in the datastore and to package data into consumable objects.
+- They can be created from local files, public URLs, Azure Open Datasets, and files uploaded to the datastores
+- They are not copies of the data but references that point to the original data. This means that no extra storage cost is incurred when you create a new dataset.
+- Once a dataset is registered in Azure ML workspace, you can share it and reuse it across various other experiments without data ingestion complexities.
+
+You may want to version your data when:
+
+- New data is available for retraining
+- When you are applying different approaches to data preparation or feature engineering.
+
+Keep in mind that there are two dataset types supported in Azure ML Workspace:
+
+- The **Tabular Dataset**, which represents data in a tabular format created by parsing the provided file or list of files.
+- The **Web URL(File Dataset)**, which references single or multiple files in datastores or from public URLs
+
+### Introducing Features
+
+Columns in a table can be referred to as **features**. Feature engineering is an important part of data preparation. In many cases, the set of initial features in the data is not enough to produce high quality trained machine learning models. You can use **feature engineering** to derive new features based on the values of existing features. This process can be as simple as applying a mathematical function to a feature or it can be as complex as training a separate machine leaning model to create values for new features.
+
+Once you have the features, another important task is selecting the features that are most important or most relevant. This process is called **feature selection**.
+
+Many machine learning algorithms cannot accommodate a large number of features, so it is often necessary to do **dimensionality reduction** to decrease the number of features.
+
+Classical ML is much more reliant on Feature Engineering than Deep Learning. Deep Learning can be used for implementation of certain Feature Engineering processes like embedding.
+
+#### Common Feature Engineering Tasks
+
+- Aggregation - sum, mean, average
+- Part-of
+- Binning
+- Flagging
+- Frequency-based
+- Embedding (Feature Learning)
+- Deriving by example
+
+#### Summary of feature engineering approaches by data type
+
+Some of the most widely used types of data used in Machine Learning are numbers, text, and image.
+
+- Numerical data comes usually in tabular format and is subject to "classical" feature engineering tasks
+- Text is, by nature, not really suitable for numerical processing - needs to be translated.
+- Image has the same problem, RGB(or other equivalent) needs to be translated.
+
+### Feature Selection
+
+There are mainly two reasons for feature selection. Some features might be highly irrelevant or redundant. So it's better to remove these features to simplify the sitution and improve performance. Additionally, it may seem like engineering more features is always a good thing, but as we mentioned earlier, many machine learning algorithms suffer from the curse of dimensionality—that is, they do not perform well when given a large number of variables or features.
+
+We can improve the situation of having too many features through dimensionality reduction.
+
+Commonly used techniques are:
+
+- PCA (Principal Component Analysis)
+- t-SNE(t-Distributed Stochastic Neighboring Entities)
+- Feature embedding
+
+Azure ML prebuilt modules:
+
+- Filter-based features selection: identify columns in the input dataset that have the greatest predictive power
+- Permutation feature importance: determined the best features to use by computing the feature importance scores
