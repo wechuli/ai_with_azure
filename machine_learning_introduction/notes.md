@@ -486,11 +486,13 @@ Data drift is change in the input data for a model. Over time, data drift causes
 Data drift is one of the main reasons that model performance gets worse over time. Azure Machine Learning allows you to set up dataset monitors that can alert you about data drift and even take automatic actions to correct data drift.
 
 The process of monitoring for data drift involves:
+
 - Specifying a **baseline dataset** - usually the training dataset
 - Specifying a **target dataset** - usually the input data for the model
 - Comparing these two datasets over time, to monitor for differences
 
 Here are a couple of different types of comparisons you might want to make when monitoring for data drift:
+
 - **Comparing input data vs. training data** - This is a proxy for model accuracy; that is, an increased difference between the input vs. training data is likely to result in a decrease in model accuracy.
 - **Comparing different samples of time series data** - In this case, you are checking for a difference between one time period and another. For example, a model trained on data collected during one season may perform differently when given data from another time of year. Detecting this seasonal drift in the data will alert you to potential issues with your model's accuracy.
 
@@ -503,16 +505,17 @@ When we train a model, a large part of the process involves learning the values 
 The coefficients in this equation, B0...Bn, determine the intercept and slope of the regression line. When training a linear regression model, we use the training data to figure out what the value of these parameters would be. Thus, we can say that a major goal of model training is to learn the values of the model parameters.
 
 In contrast, some model parameters are not learned from the data. These are called **hyperparameters** and their values are set before training. Examples of hyperparameters:
+
 - The number of layers in a deep neural network
 - The number of clusters(such as a k-means clustering algorithms)
 - The learning rate of the model
-
 
 We must choose some values for these hyperparameters, but we do not necessarily know what the best values will be prior to training. Because of this, a common approach is to take a best guess, train the model, and then tune adjust or tune the hyperparameters based on the model's performance.
 
 ### Splitting the Data
 
 We typically want to split our data into three parts:
+
 - Training data
 - Validation data
 - Test data
@@ -520,3 +523,46 @@ We typically want to split our data into three parts:
 We use the **training data** to learn the values for the parameters. Then, we check the model's performance on the **validation data** and tune the hyperparameters until the model performs well with the validation data. For instance, perhaps we need to have more or fewer layers in our neural network. We can adjust this hyperparameter and then test the model on the validation data once again to see if its performance has improved.
 
 Finally, once we believe we have our finished model (with both parameters and hyperparameters optimized), we will want to do a final check of its performance—and we need to do this on some fresh **test data** that we did not use during the training process.
+
+### Training Classifiers
+
+In a classification problem, the outputs are categorical or discrete.
+
+There are 3 main categories of classification problems:
+
+- Binary classification
+- Multi class single label classification
+- Multi class multi label classification
+
+Examples of classification algorithms include
+
+- Logistic Regression
+- Support Vector Machine
+
+### Training Regressors
+
+In a regression problem, the output is numerical or continuous.
+
+There are 2 main categories of regression problems
+
+- Regression to arbitrary value
+- Regression to value between 0 and 1
+
+## Evaluating Model Performance
+
+It is not enough to simply train a model on some data and then assume that the model will subsequently perform well on future data. Instead, we need to split off a portion of our labeled data and reserve it for evaluating out model's final performance. We refer to this as the _test dataset_.
+
+When splitting the available data, it is important to preserve the statistical properties of the data. This means that the data in the training, validation, and tests datasets need to have similar statistical properties as the original data to prevent bias in the trained model.
+
+### Confusion Matrices
+
+A confusion matrix is a table with 4 different combinations of predicted and actual values. A confusion matrix gets its name from the fact that it is easy to see whether the model is getting confused and misclassifying the data.
+
+You will often see the confusion matrix represented in a more general, abstract form that uses the terms _positive_ and _negative_:
+
+![](assets/cmatrix.PNG)
+
+- **True positives** are the positive cases that are correctly predicted as positive by the model
+- **False positives** are the negative cases that are incorrectly predicted as positive by the model
+- **True negatives** are the negative cases that are correctly predicted as negative by the model
+- **False negatives** are the positive cases that are incorrectly predicted as negative by the model
