@@ -476,3 +476,47 @@ Azure ML prebuilt modules:
 
 - Filter-based features selection: identify columns in the input dataset that have the greatest predictive power
 - Permutation feature importance: determined the best features to use by computing the feature importance scores
+
+## Data Drift
+
+Data drift is change in the input data for a model. Over time, data drift causes degradation in the model's [erformance, as the input data drifts farther and farther from the data on which the model was trained.
+
+### Monitoring for Data Drift
+
+Data drift is one of the main reasons that model performance gets worse over time. Azure Machine Learning allows you to set up dataset monitors that can alert you about data drift and even take automatic actions to correct data drift.
+
+The process of monitoring for data drift involves:
+- Specifying a **baseline dataset** - usually the training dataset
+- Specifying a **target dataset** - usually the input data for the model
+- Comparing these two datasets over time, to monitor for differences
+
+Here are a couple of different types of comparisons you might want to make when monitoring for data drift:
+- **Comparing input data vs. training data** - This is a proxy for model accuracy; that is, an increased difference between the input vs. training data is likely to result in a decrease in model accuracy.
+- **Comparing different samples of time series data** - In this case, you are checking for a difference between one time period and another. For example, a model trained on data collected during one season may perform differently when given data from another time of year. Detecting this seasonal drift in the data will alert you to potential issues with your model's accuracy.
+
+## Model Training Basics
+
+When we train a model, a large part of the process involves learning the values of the parameters of the model
+
+![](assets/params.PNG)
+
+The coefficients in this equation, B0...Bn, determine the intercept and slope of the regression line. When training a linear regression model, we use the training data to figure out what the value of these parameters would be. Thus, we can say that a major goal of model training is to learn the values of the model parameters.
+
+In contrast, some model parameters are not learned from the data. These are called **hyperparameters** and their values are set before training. Examples of hyperparameters:
+- The number of layers in a deep neural network
+- The number of clusters(such as a k-means clustering algorithms)
+- The learning rate of the model
+
+
+We must choose some values for these hyperparameters, but we do not necessarily know what the best values will be prior to training. Because of this, a common approach is to take a best guess, train the model, and then tune adjust or tune the hyperparameters based on the model's performance.
+
+### Splitting the Data
+
+We typically want to split our data into three parts:
+- Training data
+- Validation data
+- Test data
+
+We use the **training data** to learn the values for the parameters. Then, we check the model's performance on the **validation data** and tune the hyperparameters until the model performs well with the validation data. For instance, perhaps we need to have more or fewer layers in our neural network. We can adjust this hyperparameter and then test the model on the validation data once again to see if its performance has improved.
+
+Finally, once we believe we have our finished model (with both parameters and hyperparameters optimized), we will want to do a final check of its performance—and we need to do this on some fresh **test data** that we did not use during the training process.
